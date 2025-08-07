@@ -1,3 +1,5 @@
+import sys, argparse
+
 def brain_comp(code: str):
     # Only keep valid Brainfuck characters
     code = ''.join(filter(lambda x: x in [',', '.', '>', '<', '+', '-', '[', ']'], code))
@@ -54,5 +56,23 @@ def brain_comp(code: str):
                 ip = loop_table[ip]
         
         ip += 1
-# code='++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.'
 
+
+def main():
+    parser = argparse.ArgumentParser(description="Brainfuck Interpreter")
+    parser.add_argument("-f",help="Path to the Brainfuck .txt, .b or .bf file")
+    args = parser.parse_args()
+    try:
+        if args.f is not None:
+            with open(args.f,"r") as p:
+                code = p.read()
+        brain_comp(code)
+    except FileNotFoundError:
+        print(f"File not found: {args.file}", file=sys.stderr)
+        sys.exit(1)
+    except Exception as e:
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()

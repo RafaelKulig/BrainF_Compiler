@@ -28,7 +28,11 @@ code = "++++++++[>++++++++<-]>+.+.+."  # Sample Brainfuck code
 brain_comp(code)
 ```
 
-Or, you can extend this interpreter to read from `.b` files or accept command-line input.
+Or you can run it on your terminal as it follows:
+```bash
+python3 brainf_comp.py -f test.txt
+```
+
 
 ## 🧪 Example
 
