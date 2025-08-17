@@ -1,6 +1,17 @@
 import sys, argparse
 
 def brain_comp(code: str):
+    """
+    A simple Brainfuck interpreter that executes Brainfuck code provided as a string.
+
+    Args:
+        code (str): The Brainfuck code to interpret.
+
+    Raises:
+        SyntaxError: If there are unmatched brackets in the code.
+        IndexError: If the tape pointer moves to a negative position.
+        Exception: For any other errors that may occur during execution.
+    """
     # Only keep valid Brainfuck characters
     code = ''.join(filter(lambda x: x in [',', '.', '>', '<', '+', '-', '[', ']'], code))
     
@@ -66,7 +77,7 @@ def main():
         if args.f is not None:
             with open(args.f,"r") as p:
                 code = p.read()
-        brain_comp(code)
+        brain_comp(code)  # type: ignore
     except FileNotFoundError:
         print(f"File not found: {args.file}", file=sys.stderr)
         sys.exit(1)
